@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+message: "If you use this code or data, please cite the paper."
+title: "Six Quantum Hardware Protocols Testing Boundary Signatures of the ER=EPR Conjecture on IBM Marrakesh"
+authors:
+  - family-names: "Cáceres"
+    given-names: "Horacio S."
+    orcid: "https://orcid.org/0009-0003-7949-3783"
+    affiliation: "Independent researcher, Córdoba, Argentina"
+date-released: 2026-06-05
+doi: 10.5281/zenodo.20559369
+url: "https://www.qubistry.co/#er-epr"
+repository-code: "https://github.com/horca17/er-epr-six-protocols"
+license: MIT
+keywords:
+  - ER=EPR
+  - SYK
+  - traversable wormhole
+  - Hayden-Preskill
+  - OTOC
+  - IBM Quantum
