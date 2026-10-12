@@ -34,8 +34,6 @@ The numbering follows the order of execution. Exp 2b came after Exp 3, once the 
 ```
 notebooks/   one notebook per experiment (exp1_…, exp2_…, exp3_…, exp2b_…, exp5_…, exp6_…)
 reproduce/   short notebooks that download each IBM job and recompute the numbers in the paper
-data/        raw results downloaded from IBM Quantum (JSON / NPZ / CSV)
-figures/     the figures in the paper
 paper/       the PDF (same file as on Zenodo)
 ```
 
