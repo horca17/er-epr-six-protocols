@@ -1,7 +1,7 @@
 # Six Quantum Hardware Protocols Testing Boundary Signatures of the ER=EPR Conjecture
 
-Code and data for the paper by **Horacio S. Cáceres** (independent researcher, Córdoba, Argentina), 5 June 2026.
-DOI: [10.5281/zenodo.20559369](https://doi.org/10.5281/zenodo.20559369)
+Code and data for the paper by **Horacio S. Cáceres** (independent researcher, Córdoba, Argentina). Version 2, 12 October 2026 (v1: 5 June 2026).
+DOI (all versions): [10.5281/zenodo.20559368](https://doi.org/10.5281/zenodo.20559368) · v2: [10.5281/zenodo.23321402](https://doi.org/10.5281/zenodo.23321402)
 
 These are six quantum-circuit experiments run on **ibm_marrakesh** (IBM Quantum, 156 qubits, Heron R2), April–May 2026, using 7 min 02 s of QPU time in total.
 
@@ -23,7 +23,9 @@ Every job can be retrieved with `QiskitRuntimeService().job("<job_id>")`, so any
 | 3 | Hayden–Preskill recovery with SYK scrambler | F_rec = 0.9983 | `d7gls13jne2c73932620` | 18 s |
 | 2b | GJW with SYK scrambling and Majorana coupling | F(g=0) = 0.020 · F(g=π/2) = 0.953 · gain 0.933 | `d7h873q2khts739peivg` | 50 s |
 | 5 | OTOCs, Lyapunov exponent | λ_L = 1.975 ± 0.294 (54.8 % of the MSS bound) | `d7jaamkolufs73etbrfg` | 25 s |
-| 6 | Entropy growth on absorption (Bekenstein) | S: 0.348 → 0.496 bits (\|+⟩), → 0.635 bits (\|1⟩) | `d7t6lj7ljm6s73bc82c0` | 4 min 27 s |
+| 6 | Black hole entropy under absorption (Bekenstein) | Energy response ⟨H_SYK⟩: corr. 0.998 with simulation. Entropy: S(t) growth reproduced over a ≈0.3-bit noise floor; area growth ΔA(θ) **not resolved on hardware** (simulation: 0.348 → 0.496 / 0.635 bits) | `d7t6lj7ljm6s73bc82c0` | 4 min 27 s |
+
+**Version 2** corrects Experiment 6: version 1 reported the simulated entropy values as hardware results.
 
 The numbering follows the order of execution. Exp 2b came after Exp 3, once the limits of the Bell-pair approximation were clear.
 
@@ -31,6 +33,7 @@ The numbering follows the order of execution. Exp 2b came after Exp 3, once the 
 
 ```
 notebooks/   one notebook per experiment (exp1_…, exp2_…, exp3_…, exp2b_…, exp5_…, exp6_…)
+reproduce/   short notebooks that download each IBM job and recompute the numbers in the paper
 data/        raw results downloaded from IBM Quantum (JSON / NPZ / CSV)
 figures/     the figures in the paper
 paper/       the PDF (same file as on Zenodo)
@@ -38,6 +41,7 @@ paper/       the PDF (same file as on Zenodo)
 
 ## Reproduce
 
+- Quickest check: run the notebooks in `reproduce/`. Each one retrieves the job by its ID (needs an IBM Quantum account), recomputes the result and prints it next to the paper value.
 - Requirements: Python 3.10+, `qiskit` 2.x, `qiskit-ibm-runtime`, `numpy`, `scipy`, `matplotlib`. Every notebook runs on `AerSimulator` without an IBM account.
 - IBM credentials: save them once with `QiskitRuntimeService.save_account(...)` on your own machine. **Never put them inside a notebook.**
 - Observables on transpiled circuits: map them to the physical layout with `obs.apply_layout(qc_t.layout)`.
@@ -46,7 +50,8 @@ paper/       the PDF (same file as on Zenodo)
 ## Verify the paper
 
 ```
-sha256: e83f259468b4e62bb59edcf9d209ace70936ecea800cb4ed632c0a32ff91bcdd  paper/er-epr-six-protocols-2026.pdf
+sha256: 977f89706666ecd25278b8815698e2727bc3df6361585b4902ee67d291ba70b3  paper/er-epr-six-protocols-2026-v2.pdf  (v2)
+sha256: e83f259468b4e62bb59edcf9d209ace70936ecea800cb4ed632c0a32ff91bcdd  er-epr-six-protocols-2026.pdf     (v1, superseded)
 ```
 
 You can also check the hash in the browser at [qubistry.co/#er-epr](https://www.qubistry.co/#er-epr).
@@ -57,4 +62,4 @@ Use the **"Cite this repository"** button (from `CITATION.cff`) or the Zenodo DO
 
 ---
 
-**En español:** seis experimentos en ibm_marrakesh sobre las firmas de frontera de la conjetura ER=EPR. Cada resultado trae su Job ID de IBM para que cualquiera pueda bajar el dato crudo. Lo medido está en la tabla; la lectura gravitacional es interpretación.
+**En español:** seis experimentos en ibm_marrakesh sobre las firmas de frontera de la conjetura ER=EPR. Cada resultado trae su Job ID de IBM para que cualquiera pueda bajar el dato crudo. Lo medido está en la tabla; la lectura gravitacional es interpretación. La versión 2 corrige el Experimento 6.
